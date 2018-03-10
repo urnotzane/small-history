@@ -10,7 +10,7 @@
       <div class="article-foot">
         <span>作者</span>
         <span>评论或回答</span>
-        <span>时间</span>
+        <span>10分钟</span>
       </div>
     </div>
     <div class="article-box">
