@@ -1,51 +1,78 @@
-/**
- * Created by Administrator on 2017/2/12.
- */
-//var http = require("http"); //http 请求
-var https = require("https"); //https 请求
-var querystring = require("querystring");
-function request(path,param,callback) {
-    var options = {
-        hostname: 'https://www.toutiao.com/ch/news_history/',
-        port: 443, //端口号 https默认端口 443， http默认的端口号是80
-        path: path,
-        method: 'POST',
-        headers: {
-            "Connection": "keep-alive",
-            "Content-Length": 111,
-            "Content-Type": "application/json",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3355.4 Safari/537.36"
-        }//伪造请求头
-    };
+const https = require("https")
+const md5 = require('md5')
+var url = "https://m.toutiao.com/i6500481956969447950/info/?_signature=x5chUhAcnUltuGHSMLDY4ceXIU&i=6500481956969447950"
+var cheerio = require("cheerio")
 
-    var req = http.request(options, function (res) {
+console.log("爬虫程序开始运行...")
 
-        var json = ""; //定义json变量来接收服务器传来的数据
-        console.log(res.statusCode);
-        //res.on方法监听数据返回这一过程，"data"参数表示数数据接收的过程中，数据是一点点返回回来的，这里的chunk代表着一条条数据
-        res.on("data", function (chunk) {
-            json += chunk; //json由一条条数据拼接而成
-        })
-        //"end"是监听数据返回结束，callback（json）利用回调传参的方式传给后台结果再返回给前台
-        res.on("end", function () {
-            callback(json);
-        })
-        console.log(json)
-    })
 
-    req.on("error", function () {
-        console.log('error')
-    })
-//这是前台参数的一个样式，这里的参数param由后台的路由模块传过来，而后台的路由模块参数是前台传来的
-//    var obj = {
-//        query: '{"function":"newest","module":"zdm"}',
-//        client: '{"gender":"0"}',
-//        page: 1
-//}
-    req.write(querystring.stringify(param)); //post 请求传参
-    req.end(); //必须要要写，
-
+//时间戳转换为时间
+var timestampToTime = function (timestamp) {
+    var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    Y = date.getFullYear() + '-';
+    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+    D = date.getDate() + ' ';
+    h = date.getHours() + ':';
+    m = date.getMinutes() + ':';
+    s = date.getSeconds();
+    return Y + M + D + h + m + s;
 }
-module.exports = request;
+//转换为几分钟前
+var chaTime = function (date) {
+    if(date < 60) {
+        return date + "秒前";
+    }else if(date >60 && date < 3600) {
+        var min = parseInt(date/60);
+        return min + "分钟前"
+    }else{
+        var hour = parseInt(date/3600)
+        return hour + "小时前"
+    }
+}
 
-request
+//转换时间差
+var time_trans = function(behot_time) {
+    const t = new Date().getTime();
+    //时间戳的差值
+    const cha = parseInt(t/1000) - behot_time;
+    var timeCha = "";
+    if(cha < 86400) {      
+        timeCha = chaTime(cha)
+    }else {
+        timeCha = timestampToTime(behot_time)
+    }
+    return timeCha
+}
+
+//过滤JSON数据存入数组并返回
+const filterStoryList = function(html) {
+    var story_detail = JSON.parse(html).data
+    var source = story_detail.detail_source,
+    publish_time = time_trans(story_detail.publish_time),
+    title = story_detail.title,
+    content = story_detail.content;
+    var story_data = [
+        title = title,
+        source = source,
+        publish_time = publish_time,
+        content = content
+    ]
+
+    return story_data
+}
+
+https.get(url, function(res) {
+    var html = '';
+    // 获取页面数据
+    res.on('data', function(data) {
+        html += data;
+    });
+    // 数据获取结束
+    res.on('end', function() {
+        // 通过过滤页面信息获取实际需求的信息
+         var story_data = filterStoryList(html);
+        console.log(story_data)
+    });
+}).on('error', function() {
+    console.log('获取数据出错！');
+});

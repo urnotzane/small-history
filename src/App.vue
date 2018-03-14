@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <top></top>
+    <!-- <top></top>
     <navbar></navbar>
-    <articleList></articleList>
+    <article-list></article-list> -->
+    <top-back></top-back>
+    <article-content></article-content>
   </div>
 </template>
 
@@ -10,13 +12,17 @@
 import top from './components/top'
 import navbar from './components/navbar'
 import articleList from './components/articleList'
+import topBack from './components/topBack'
+import articleContent from './components/articleContent'
 
 export default {
   name: 'App',
   components: {
     top,
     navbar,
-    articleList
+    articleList,
+    topBack,
+    articleContent
   }
 }
 </script>

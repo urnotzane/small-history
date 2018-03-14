@@ -11,7 +11,7 @@ export default {
   name: 'top',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      i: "i"
     }
   }
 }
