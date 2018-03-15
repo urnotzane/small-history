@@ -6,16 +6,11 @@
           </div>
           
           <div class="mid">
-              <div class="source left">
-                趣历史
-              </div>              
+              <img src="../assets/img/wukonglogo.png" /> 
+          </div>
+          <div class="right">            
               <div class="source right">
                  <img src="../assets/img/more.png" />
-              </div>
-          </div>
-          <div class="right">
-              <div class="source right">
-                <button>关注</button>
               </div>
           </div>
       </div>
@@ -24,7 +19,7 @@
 
 <script>
 export default {
-  name: 'topBack',
+  name: 'topWukong',
   data () {
       return {
         i: "i"
@@ -55,6 +50,14 @@ export default {
 }
 .right{
     float: right;
+}
+
+.mid img{
+    width: 80px;
+    height: 20px;
+}
+.mid{
+    display: inline-block;
 }
 .source{
     display: inline-block;

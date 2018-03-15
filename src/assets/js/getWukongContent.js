@@ -1,7 +1,8 @@
 const https = require("https")
 const md5 = require('md5')
-var url = "https://m.toutiao.com/i6500481956969447950/info/?_signature=x5chUhAcnUltuGHSMLDY4ceXIU&i=6500481956969447950"
+var url = "https://www.wukong.com/answer/6532026701705117966/"
 var cheerio = require("cheerio")
+const he = require('he')
 
 console.log("爬虫程序开始运行...")
 
@@ -46,19 +47,39 @@ var time_trans = function(behot_time) {
 
 //过滤JSON数据存入数组并返回
 const filterStoryList = function(html) {
-    var story_detail = JSON.parse(html).data
-    var source = story_detail.detail_source,
-    publish_time = time_trans(story_detail.publish_time),
-    title = story_detail.title,
-    content = story_detail.content;
-    var story_data = [
-        title = title,
-        source = source,
-        publish_time = publish_time,
-        content = content
-    ]
+    const $ = cheerio.load(html)
+    var answer_data = []
 
-    return story_data
+    const title = $(".question-name").children("a").text(),
+          text = $(".question-text").text(),
+          img_src = $(".image-box").children("img").attr("src"),
+          answer_num =  $(".answer-count-h").children("span").text() 
+     
+    var param = [
+        {
+            title: title,
+            text: text,
+            img_src: img_src,
+            answer_num: answer_num
+        }
+    ]
+    answer_data.push(param)
+    $(".answer-item").each ( function (i, e){
+        const answer_user_name = $(e).find(".answer-user-name").text(), //
+              user_intro = $(e).find(".user-intro").text(),
+              time = $(e).find(".answer-user-tag").text(),
+              content = he.decode($(e).find(".answer-text-full").html());
+        param = [
+            {
+                answer_user_name: answer_user_name,
+                user_intro: user_intro,
+                time: time,
+                content: content
+            }
+        ]
+        answer_data.push(param)
+    })     
+    return answer_data
 }
 
 https.get(url, function(res) {
@@ -71,7 +92,7 @@ https.get(url, function(res) {
     res.on('end', function() {
         // 通过过滤页面信息获取实际需求的信息
          var story_data = filterStoryList(html);
-        console.log(story_data)
+         console.log(story_data)
     });
 }).on('error', function() {
     console.log('获取数据出错！');

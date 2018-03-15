@@ -33,7 +33,6 @@ export default {
         height: 30px;
         line-height: 30px;
         font-size: 14px;
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: #888;
     }
 </style>
