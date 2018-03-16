@@ -34,25 +34,25 @@ export default new Router({
       path: '/',
       name: 'topBack',
       component: topBack,
-      meta: {keepAlive: true}
+      meta: {keepAlive: false}
     },
     {
       path: '/',
       name: 'articleContent',
       component: articleContent,
-      meta: {keepAlive: true}
+      meta: {keepAlive: false}
     },
     {
       path: '/',
       name: 'topWukong',
       component: topWukong,
-      meta: {keepAlive: true}
+      meta: {keepAlive: false}
     },
     {
       path: '/',
       name: 'articleWukong',
       component: articleWukong,
-      meta: {keepAlive: true}
+      meta: {keepAlive: false}
     }
   ]
 })

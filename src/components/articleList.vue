@@ -1,6 +1,6 @@
 <template>
   <div class="articleList">
-    <div class="article-box"  v-for="item in articleData" v-bind:key="item.id">
+    <router-link :to="'/articleContent'" class="article-box" v-for="item in articleData" v-bind:key="item.id" v-on:click="isHide">
       <div class="article-title">{{item.title}}</div>
       <div class="article-img">
         <img src="#" />
@@ -12,11 +12,15 @@
         <span>{{item.comment}}</span>
         <span>{{item.time}}</span>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script>
+const articleContent = {template: articleContent}
+const routes = [
+  {path: './components', component: articleContent}
+]
 export default {
   name: 'articleList',
   data () {
@@ -37,6 +41,12 @@ export default {
           time: "1分钟前"
         }
       ]
+    }
+  },
+  methods: {
+    isHide: function () {
+      this.$emit('list-say',false)
+      console.log("child is ok")
     }
   }
 }

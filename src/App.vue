@@ -3,10 +3,10 @@
       <top v-if="$route.meta.keepAlive"></top>
       <navbar v-if="$route.meta.keepAlive"></navbar>
       <article-list v-if="$route.meta.keepAlive"></article-list>
-      <top-back v-if="!$route.meta.keepAlive"></top-back>
+      <!-- <top-back v-if="!$route.meta.keepAlive"></top-back>
       <article-content v-if="!$route.meta.keepAlive"></article-content>
       <top-wukong v-if="!$route.meta.keepAlive"></top-wukong>
-      <article-wukong v-if="!$route.meta.keepAlive"></article-wukong>
+      <article-wukong v-if="!$route.meta.keepAlive"></article-wukong> -->
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -44,7 +44,6 @@ export default {
     padding: 0;
     max-width: 680px;
     margin: 0 auto;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 25px;
 }
 li{
