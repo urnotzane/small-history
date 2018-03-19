@@ -1,5 +1,6 @@
 <template>
   <div class="article-wukong ">
+      <top-wukong></top-wukong>
       <div class="question-box">
           <h3 class="title ">乾隆皇帝为何要赐给纪晓岚两个宫女？</h3>
           <div class="question-content ">
@@ -61,8 +62,13 @@
   </div>
 </template>
 <script>
+import topWukong from './topWukong'
+
 export default {
   name: "articleWukong",
+  components: {
+      topWukong
+  },
   data: function () {
       return {
           i: "p"

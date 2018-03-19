@@ -10,8 +10,12 @@ import articleWukong from '@/components/articleWukong'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
+const routes = [   
+    {
+      path: '/',
+      component: articleList,
+      meta: {keepAlive: true}
+    },
     {
       path: '/',
       name: 'top',
@@ -25,34 +29,25 @@ export default new Router({
       meta: {keepAlive: true}
     },
     {
-      path: '/',
-      name: 'articleList',
-      component: articleList,
-      meta: {keepAlive: true}
-    },
-    {
-      path: '/',
+      path: '/topBack',
       name: 'topBack',
-      component: topBack,
-      meta: {keepAlive: false}
+      component: topBack
     },
     {
-      path: '/',
+      path: '/articleContent',
       name: 'articleContent',
-      component: articleContent,
-      meta: {keepAlive: false}
+      component: articleContent
     },
     {
       path: '/',
       name: 'topWukong',
-      component: topWukong,
-      meta: {keepAlive: false}
+      component: topWukong
     },
     {
       path: '/',
       name: 'articleWukong',
-      component: articleWukong,
-      meta: {keepAlive: false}
+      component: articleWukong
     }
   ]
-})
+
+export default routes

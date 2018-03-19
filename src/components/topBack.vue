@@ -1,7 +1,7 @@
 <template>
   <div class="topBack">
       <div class="menu">
-          <div class="left">
+          <div class="left" v-on:click="goBefore">
               <img src="../assets/img/back.png" />
           </div>
           
@@ -28,6 +28,11 @@ export default {
   data () {
       return {
         i: "i"
+      }
+  },
+  methods: {
+      goBefore: function () {
+          window.history.go(-1)
       }
   }
 }
@@ -61,7 +66,7 @@ export default {
     margin-top: -1px;
 }
 .source button{
-    padding: 5px 15px;
+    padding: 3px 15px;
     background-color: #f66;
     border: 0;
     border-radius: 3px;

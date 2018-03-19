@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'top',
+  name: 'navbar',
   data () {
     return {
       navtitles: [

@@ -1,4 +1,6 @@
 <template>
+<div>
+    <top-back></top-back>
     <div class="articleContent">
         <h2>一个外国人，不远千里来中国做太监，摧毁了庞大的帝国</h2>
         <div class="create-time">
@@ -9,10 +11,17 @@
         </div>
 
     </div>
+</div>
+    
 </template>
 <script>
+import topBack from './topBack'
+
 export default {
     name: "articleContent",
+    components: {
+        topBack
+    },
     data: function () {
         return {
             i: "2"
@@ -21,6 +30,7 @@ export default {
 }
 </script>
 <style scoped>
+
     .articleContent{
         margin-top: 80px;
         padding: 15px;
@@ -34,6 +44,6 @@ export default {
         line-height: 30px;
         font-size: 14px;
         color: #888;
-    }
+    }      
 </style>
 

@@ -1,34 +1,15 @@
 <template>
   <div id="app">
-      <top v-if="$route.meta.keepAlive"></top>
-      <navbar v-if="$route.meta.keepAlive"></navbar>
-      <article-list v-if="$route.meta.keepAlive"></article-list>
-      <!-- <top-back v-if="!$route.meta.keepAlive"></top-back>
-      <article-content v-if="!$route.meta.keepAlive"></article-content>
-      <top-wukong v-if="!$route.meta.keepAlive"></top-wukong>
-      <article-wukong v-if="!$route.meta.keepAlive"></article-wukong> -->
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
-import top from './components/top'
-import navbar from './components/navbar'
 import articleList from './components/articleList'
-import topBack from './components/topBack'
-import articleContent from './components/articleContent'
-import topWukong from './components/topWukong'
-import articleWukong from './components/articleWukong'
-
 export default {
   name: 'App',
   components: {
-    top,
-    navbar,
-    articleList,
-    topBack,
-    articleContent,
-    topWukong,
-    articleWukong
+    articleList
   }
 }
 </script>
@@ -52,5 +33,11 @@ li{
 }
 .title{
   margin-bottom: 10px;
+}
+a{
+  color: #212121;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+  display: inline-block;
 }
 </style>
