@@ -1,5 +1,6 @@
 <template>
-  <div class="article-wukong ">
+<transition name="bounce">
+    <div class="article-wukong ">
       <top-wukong></top-wukong>
       <div class="question-box">
           <h3 class="title ">乾隆皇帝为何要赐给纪晓岚两个宫女？</h3>
@@ -60,6 +61,7 @@
           </div>
       </div>
   </div>
+</transition> 
 </template>
 <script>
 import topWukong from './topWukong'
@@ -111,5 +113,21 @@ img{
     line-height: 30px;
     font-size: 15px;
 }
+.bounce-enter-active{
+        animation: out-in .5s;
+    }
+     .bounce-leave-active{
+        animation: out-in .5s reverse;
+    }
+    @keyframes out-in {
+        0% {
+            left: 100%;
+            opacity: .8;
+        }
+        100% {
+            left:0;
+            opacity: 1;
+        }
+    }
 </style>
 

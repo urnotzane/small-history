@@ -1,6 +1,6 @@
 <template>
   <div class="articleList">
-    <top></top>
+    <top ></top>
     <navbar></navbar>
     <router-link to="articleContent" class="article-box" v-for="item in articleData" v-bind:key="item.id" v-on:click="isHide">
       <div class="article-title">{{item.title}}</div>
@@ -15,13 +15,14 @@
         <span>{{item.time}}</span>
       </div>
     </router-link>
-    <router-view></router-view>
   </div>
+
 </template>
 
 <script>
 import top from './top'
 import navbar from './navbar'
+
 
 export default {
   name: 'articleList',
@@ -53,16 +54,14 @@ export default {
     isHide: function () {
       this.$emit('list-say',false)
       console.log("child is ok")
-    }
+    },
+    
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
- /* .articleList{
-   padding: 0 16px;
- } */
  .article-box{
    padding: 8px 16px;
  }

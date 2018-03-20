@@ -1,5 +1,8 @@
 const https = require("https")
-const md5 = require('md5')
+const md5 = require('md5'),
+    express = require('express'),
+    app = express(),
+    fs = require("fs");
 var url = "https://www.toutiao.com/api/pc/feed/?category=news_history&utm_source=toutiao&widen=1&max_behot_time=0&max_behot_time_tmp=0&tadrequire=true&"
 
 console.log("爬虫程序开始运行...")
@@ -105,20 +108,52 @@ const filterStoryList = function(html) {
 // }
 
 getAscp();
-https.get(url, function(res) {
-    var html = '';
-    // 获取页面数据
-    res.on('data', function(data) {
-        html += data;
+var _data = "";
+// var getData = function () {
+    https.get(url, function(res) {
+        var html = '';
+        // 获取页面数据
+        res.on('data', function(data) {
+            html += data;
+        });
+        // 数据获取结束
+        res.on('end', function() {
+            // 通过过滤页面信息获取实际需求的信息
+             var storyData = filterStoryList(html);
+             _data = storyData
+             console.log(_data)
+            // 获取的html数据是未格式化的JSON，无法使用querystring.parse进行格式化
+            // console.log(JSON.parse(html).data[0])
+        });
+    }).on('error', function() {
+        console.log('获取数据出错！') ;
     });
-    // 数据获取结束
-    res.on('end', function() {
-        // 通过过滤页面信息获取实际需求的信息
-         var storyData = filterStoryList(html);
-         console.log(storyData)
-        // 获取的html数据是未格式化的JSON，无法使用querystring.parse进行格式化
-        // console.log(JSON.parse(html).data[0])
-    });
-}).on('error', function() {
-    console.log('获取数据出错！');
-});
+// }
+
+app.get('/', function (req, res) {
+    res.send(_data);
+})
+
+var server = app.listen(1337, function () {
+ 
+  var host = server.address().address
+  var port = server.address().port
+ 
+  console.log("应用实例，访问地址为 http://%s:%s", host, port) 	
+})
+//写文件
+
+
+// getData()
+
+// setTimeout(() => {
+//     fs.writeFile('./storyList.txt',_data,{flag:'w',encoding:'utf-8',mode:'0666'},function(err){
+//         if(err){
+//             console.log("文件写入失败")
+//         }else{
+//             console.log("文件写入成功");
+    
+//         }
+    
+//     })
+// }, 1000);

@@ -10,6 +10,9 @@ export default {
   name: 'App',
   components: {
     articleList
+  },
+  methods: {
+    
   }
 }
 </script>
@@ -39,5 +42,8 @@ a{
   text-decoration: none;
   border-bottom: 1px solid #eee;
   display: inline-block;
+}
+a:visited{
+  color: #888;
 }
 </style>
