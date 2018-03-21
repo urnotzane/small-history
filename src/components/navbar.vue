@@ -14,7 +14,7 @@ export default {
       navtitles: [
           {
               id: 0,
-              title: '历史',
+              title: '热点',
               isClicked: true
           },
           {

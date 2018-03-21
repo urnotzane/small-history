@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view ></router-view>
+      </keep-alive>
   </div>
 </template>
 
@@ -40,10 +42,8 @@ li{
 a{
   color: #212121;
   text-decoration: none;
-  border-bottom: 1px solid #eee;
-  display: inline-block;
+  display: block;
+   border-bottom: 1px solid #eee;
 }
-a:visited{
-  color: #888;
-}
+
 </style>
