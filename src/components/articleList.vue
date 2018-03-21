@@ -2,15 +2,15 @@
   <div class="articleList">
     <top ></top>
     <navbar></navbar>
-    <router-link to="articleContent"  class="article-box" v-for="item in articleData" v-bind:key="item.id" v-on:click="isHide">
-      <div class="content-left" :data-href="item.href">
+    <router-link v-on:click.native="passParam(item.href)" :to="{path:'articleContent',query:{href:item.href}}" :data-href="item.href" class="article-box" v-for="item in articleData" v-bind:key="item.id" >
+      <div class="content-left" >
         <div class="article-title">{{item.title}}</div>     
         <div class="article-foot">
           <span>{{item.author}}</span>
-          <span>{{item.date}}</span>
+          <span>{{item.date}}</span> 
         </div>
       </div>
-      <div class="content-right" :data-href="item.href">
+      <div class="content-right" >
         <div class="article-img" >
           <img :src="item.img_url">
         </div>
@@ -49,7 +49,7 @@ export default {
     getData: function () {
       const that = this
       var _data = []
-      axios.get('/api/story_list')
+      axios.get('/api/article_list')
         .then(function (res) {
           // console.log("From axios" + res.data)
           _data = res.data
@@ -62,6 +62,11 @@ export default {
         that.articleData = _data
         // console.log("From articleData" + that.articleData)
       }, 200);
+    },
+    passParam: function (href) {
+      this.$router.push({path:'articleContent', query:{href: href}})
+      // console.log(href)
+      return false
     }
   }
 }
