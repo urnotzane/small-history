@@ -7,7 +7,7 @@
           
           <div class="mid">
               <div class="source left">
-                趣历史
+                文章内容
               </div>              
               <div class="source right">
                  <img src="../assets/img/more.png" />
