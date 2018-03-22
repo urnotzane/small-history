@@ -37,7 +37,6 @@ import top from './top'
 import navbar from './navbar'
 import axios from 'axios'
 
-
 export default {
   name: 'articleList',
   components: {
@@ -71,10 +70,6 @@ export default {
     this.getData();
   },
   methods: {
-    isHide: function () {
-      this.$emit('list-say',false)
-      console.log("child is ok")
-    },
     getData: function () {
       const that = this
       var _data = []

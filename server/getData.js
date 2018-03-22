@@ -1,5 +1,6 @@
 const express = require('express'),
    app = express(),
+   history = require('connect-history-api-fallback'),
    path = require('path') ,
    request = require('request'),
    cheerio = require('cheerio'),
@@ -7,8 +8,8 @@ const express = require('express'),
    url = 'http://app.myzaker.com/';
 
 app.use(express.static(path.join(__dirname,'../dist')));  
-
-
+app.use(history());
+ 
 console.log('express爬虫程序开始...')
  //获取文章内容
 app.get ('/api/article_content', function (req, res) {
@@ -116,6 +117,12 @@ const getImgurl = function (img_url) {
       return str
    }
 }
+
+//解决刷新404，停留在当前页面并刷新
+app.use(function(req, res, next) {
+   res.status(404).sendFile(path.join(__dirname,'../dist/index.html') );
+  // console.log(res.status())
+});
 
 var server = app.listen(1337, function () {
  

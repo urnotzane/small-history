@@ -4,14 +4,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
 import routes from './router'
-import axios from 'axios'
+// import axios from 'axios'
 
-Vue.prototype.$ajax = axios
+// Vue.prototype.$ajax = axios
 // Vue.config.productionTip = false
 Vue.use(VueRouter)
+Vue.prototype.router = router;
 
 const router = new VueRouter({
-  // mode: 'history',
+  mode: 'history',
   base: __dirname, //这个很重要
   routes
 })

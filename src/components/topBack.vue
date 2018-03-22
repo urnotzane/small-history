@@ -32,7 +32,8 @@ export default {
   },
   methods: {
       goBefore: function () {
-          window.history.go(-1)
+        //   window.history.go(-1)
+        this.$router.go(-1)
       }
   }
 }
