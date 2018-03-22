@@ -83,7 +83,7 @@ export default {
           // console.log("From axios" + res.data)
           _data = res.data
         })
-        .catch(function (eer) {
+        .catch(function (err) {
           console.log(err)
         })
       setTimeout(() => {

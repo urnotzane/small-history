@@ -11,7 +11,7 @@ Vue.prototype.$ajax = axios
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: __dirname, //这个很重要
   routes
 })
