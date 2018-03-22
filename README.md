@@ -34,7 +34,7 @@ $ cnpm run dev
 
 3. 期间调试了很多次爬过很多坑，具体问题都在[我的csdn博客](https://blog.csdn.net/urnotzane/article/details/79443941)上有写，这里就不再次记录了。
 
-### 后端——选择了node
+### 后端——选择了node&express
 > 既然vue的编写运行环境需要node，不妨试一下node搞后端数据，还能学习一下。
 
 1. node抓取网页数据很容易
