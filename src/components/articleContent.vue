@@ -80,16 +80,22 @@ export default {
             }
         } ,
         makeBetter: function () {
-            const title = document.getElementById("news_template_03_titleContent"),
-            source = document.getElementById("news_template_03_AuthorAndTime"),
-            surplus = document.getElementById("ID_disclaimer");
+            try {
+                const title = document.getElementById("news_template_03_titleContent"),
+                source = document.getElementById("news_template_03_AuthorAndTime"),
+                surplus = document.getElementById("ID_disclaimer");
 
-            title.style.fontSize = "20px"
-            title.style.fontWeight = "bold"
-            title.style.padding = "3px 0"
-            source.style.fontSize = "12px"
-            source.style.color = "#888"
-            surplus.style.display = "none"
+                title.style.fontSize = "20px"
+                title.style.fontWeight = "bold"
+                title.style.padding = "3px 0"
+                source.style.fontSize = "12px"
+                source.style.color = "#888"
+                source.style.marginBottom = "10px"
+                surplus.style.display = "none"
+            } catch (error) {
+                console.log("Cannot read property 'style' of null!文档未加载完或不存在该属性时而出现的无关紧要的错误。")
+            }
+            
         }
     }
 }

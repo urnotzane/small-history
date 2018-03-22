@@ -1,7 +1,7 @@
 <template>
   <div class="top">
     <div class="search">
-      <input type="text" placeholder="" />
+      <input v-model="searchVal" type="text" placeholder="搜索本页内容" />
     </div>
   </div>
 </template>
@@ -11,7 +11,21 @@ export default {
   name: 'top',
   data () {
     return {
-      i: "i"
+      searchVal: ""
+    }
+  },
+  watch: {
+    searchVal: {
+      handler: function (searchVal) {
+        this.searchSth()
+      }
+    }
+  },
+  methods: {
+    searchSth: function () {
+      const that = this
+      console.log(this.searchVal)
+
     }
   }
 }

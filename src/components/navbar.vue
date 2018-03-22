@@ -67,6 +67,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.navbar{
+    margin-top: 80px;
+}
   .navbar ul{
       padding: 6px 8px;
       border-bottom: 1px solid #eee;
