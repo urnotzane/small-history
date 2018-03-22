@@ -55,9 +55,9 @@ $ cnpm run dev
 
 ### 上线
 
-> 前段时间买了个[namesilo](https://www.namesilo.com/)域名和[野草云](http://www.yecaoyun.com/)的虚拟主机，很便宜~却没想到虚拟主机只支持PHP，并不支持node，很惨，我用了俩星期做这个结果却没法上线T~T。
+> 前段时间买了个[namesilo](https://www.namesilo.com/)域名和[野草云](http://www.yecaoyun.com/)的虚拟主机，很便宜~却没想到虚拟主机只支持PHP，并不支持node，很惨，我用了俩星期做这个结果却没法上线TT。
 
-> 思来想去不如我再写个PHP抓数据吧:)
+> 思来想去不如我再写个PHP抓数据吧 :)
 
 ## 结束
 
