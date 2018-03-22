@@ -13,7 +13,7 @@ Vue.prototype.router = router;
 
 const router = new VueRouter({
   mode: 'history',
-  base: __dirname, //这个很重要
+  base: '/vue-news', //这个很重要
   routes
 })
 
