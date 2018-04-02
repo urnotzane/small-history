@@ -2,6 +2,7 @@ const express = require('express'),
    app = express(),
    history = require('connect-history-api-fallback'),
    path = require('path') ,
+   // http = require('http'),
    request = require('request'),
    cheerio = require('cheerio'),
    he = require('he'),
@@ -43,7 +44,8 @@ app.get ('/api/article_list', function (req, res) {
       if (!error && response.statusCode == 200) {
          const _data = filterList(body)
          //输出
-            console.log("正在向服务器上传文章列表")
+         console.log("正在向服务器上传文章列表")
+		 console.log(_data)
          res.send(_data)
       }else{
          res.send(error)

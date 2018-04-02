@@ -43,7 +43,7 @@ export default {
         setTimeout(() => {
             that.getSrc() 
         that.makeBetter()           
-        }, 200);
+        }, 500);   //这个时间要和数据获取时间一致，否则无法渲染图片
     },
     methods: {
         getContent: function() {
@@ -66,7 +66,7 @@ export default {
                 // console.log("From _data" + _data)
                 that.articleContent = _data
                 // console.log("From articleData" + that.articleData)
-            }, 200);
+            }, 500);
         },
         getSrc: function () {
             var imgs = document.getElementsByTagName("img");

@@ -64,6 +64,15 @@ export default {
       handler: function (search_result) {
         this.divDis(search_result)
       }
+    },
+    articleData: {
+      handler: function(articleData) {
+        if(articleData = []) {
+          console.log("稍等一下，数据马上出现~")
+        } else {
+          console.log("加载数据也太慢了！")
+        }
+      }
     }
   },
   mounted() {
@@ -74,18 +83,19 @@ export default {
       const that = this
       var _data = []
       axios.get('/api/article_list')
-        .then(function (res) {
-          // console.log("From axios" + res.data)
-          _data = res.data
-        })
-        .catch(function (err) {
-          console.log(err)
-        })
+			.then(function (res) {
+			// console.log("From axios" + res.data)
+			_data = res.data
+			})
+			.catch(function (err) {
+			console.log(err)
+		})
       setTimeout(() => {
-        // console.log("From _data" + _data)
+		
+		// console.log("From _data" + _data)
         that.articleData = _data
-        // console.log("From articleData" + that.articleData)
-      }, 200);
+         //console.log("From articleData" + that.articleData)
+      }, 500);
     },
     passParam: function (href) {
       this.$router.push({path:'articleContent', query:{href: href}})
