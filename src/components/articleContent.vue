@@ -37,36 +37,47 @@ export default {
 
     },
     activated: function () {
-        const that = this
-        // console.log(that.$route.query.href)
-        that.getContent()
-        setTimeout(() => {
-            that.getSrc() 
-        that.makeBetter()           
-        }, 500);   //这个时间要和数据获取时间一致，否则无法渲染图片
+        this.promiseFun()
     },
     methods: {
-        getContent: function() {
+        getContent: function(url) {
             const href = this.$route.query.href
             const that = this
-            var _data = ""
-            axios.get('/api/article_content', {
-                params: {
-                    _url: href
-                }
+            return new Promise (function (resolve, reject) {
+                axios.get(url,{
+                    params: {
+                        _url: href
+                    }
+                })
+                    .then(function (res) {
+                    if(res.err) {
+                        reject(res.err);
+                        return;
+                    }
+                    resolve(res.data);
+
+                    })
+                    .catch(function (err) {
+                console.log(err)
+                })
             })
-            .then(function(res){
-                _data += res.data
-                // console.log("from res:" + _data);
+        },
+        promiseFun: function () {
+            const that = this;
+            let promise = that.getContent('/api/article_content');
+            promise.then(function (contents) {
+                // console.log(contents.length);
+                that.articleContent = contents; 
             })
-            .catch(function(err){
-                console.log(err);
-            });
-            setTimeout(() => {
-                // console.log("From _data" + _data)
-                that.articleContent = _data
-                // console.log("From articleData" + that.articleData)
-            }, 500);
+            .then(function() {
+                that.getSrc()
+            })
+            .then( function () {
+                that.makeBetter()
+            })
+            .catch(err => {
+                console.err(err)
+            })
         },
         getSrc: function () {
             var imgs = document.getElementsByTagName("img");
